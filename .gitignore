@@ -12,6 +12,3 @@
 /captures
 .externalNativeBuild
 .cxx
-local.properties
-/.idea/
-.gradle/
