@@ -3,7 +3,7 @@ object Versions {
     const val kotlin = "1.3.70"
 
     const val koin = "2.1.3"
-    const val navigation = "2.2.0-rc01"
+    const val navigation = "2.2.1"
 
     const val javaVersion = "1.8"
 
@@ -34,7 +34,7 @@ object Versions {
     const val coil = "0.9.5"
     const val coilTransformation = "0.0.4"
 
-    const val room = "1.1.1"
+    const val room = "2.2.4"
 
     const val skeleton = "2.0.0"
     const val materialDrawer = "7.0.0-rc08"
@@ -46,9 +46,10 @@ object Versions {
 }
 
 object Room {
-    val runtime = "android.arch.persistence.room:runtime:${Versions.room}"
-    val compiler = "android.arch.persistence.room:compiler:${Versions.room}"
-    val test = "android.arch.persistence.room:testing:${Versions.room}"
+    val runtime = "androidx.room:room-runtime:${Versions.room}"
+    val compiler = "androidx.room:room-compiler:${Versions.room}"
+    val ktx = "androidx.room:room-ktx:${Versions.room}"
+    val test = "androidx.room:room-testing:${Versions.room}"
 }
 
 object Kotlin {
@@ -83,8 +84,6 @@ object Libs {
 }
 
 object Navigation{
-    val materialDrawer = "com.mikepenz:materialdrawer:${Versions.materialDrawer}"
-    val materialDrawerNavigation = "com.mikepenz:materialdrawer-nav:${Versions.materialDrawer}"
     val navigationGradle = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
     val runtime = "androidx.navigation:navigation-runtime-ktx:${Versions.navigation}"
     val fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
