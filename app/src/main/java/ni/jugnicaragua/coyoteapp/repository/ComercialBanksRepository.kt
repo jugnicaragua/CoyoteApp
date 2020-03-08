@@ -8,7 +8,7 @@ interface ComercialBanksRepository {
 }
 
 class ComercialBanksRepositoryImplement(private val comercialBanksService: ComercialBanksInterface): ComercialBanksRepository{
-    override suspend fun getCountries(): Root {
+    override suspend fun getExchangeRates(): Root {
         return comercialBanksService.requestExchangeRates()
     }
 }
