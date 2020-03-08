@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 interface ComercialBanksInterface {
     @GET("api/commercialBankExchangeRates")
-    suspend fun requestExchangeRates(): List<Root>
+    suspend fun requestExchangeRates(): Root
 }
