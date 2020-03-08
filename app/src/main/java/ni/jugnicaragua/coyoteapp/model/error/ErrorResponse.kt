@@ -1,6 +1,6 @@
-package ni.jugnicaragua.coyoteapp.model.cookie
+package ni.jugnicaragua.coyoteapp.model.error
 
-data class CookieReponseBDF(
+data class ErrorResponse(
     val error: String, // Unauthorized
     val message: String, // Unauthorized
     val path: String, // /api/banks/5/cookies/

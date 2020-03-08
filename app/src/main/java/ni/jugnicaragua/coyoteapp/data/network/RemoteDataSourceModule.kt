@@ -3,6 +3,7 @@ package ni.jugnicaragua.coyoteapp.data.network
 import ni.jugnicaragua.coyoteapp.BuildConfig
 import ni.jugnicaragua.coyoteapp.data.network.cookiesInterceptor.ReceivedCookieInterceptor
 import ni.jugnicaragua.coyoteapp.data.network.headerInterceptor.HeaderInterceptor
+import ni.jugnicaragua.coyoteapp.data.network.interfaces.ComercialBanksInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -12,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 val remoteDataSourceModule = module {
     single { createOkHttpClient() }
-//    single { createWebService<CredentialsInterface>(get(), BuildConfig.COYOTE_SERVICE) }
+    single { createWebService<ComercialBanksInterface>(get(), BuildConfig.COYOTE_SERVICE) }
 //    single { createWebService<RegisterInterface>(get(), BuildConfig.COYOTE_SERVICE) }
 //    single { createWebService<ProfileInterface>(get(), BuildConfig.COYOTE_SERVICE) }
 //    single { createWebService<CountryInterface>(get(), BuildConfig.COYOTE_SERVICE) }
