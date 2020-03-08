@@ -1,6 +1,9 @@
 package ni.jugnicaragua.coyoteapp.model.exchangeRate
 
-data class Data(
+import androidx.room.Entity
+
+@Entity(tableName = "ExchangeRate", primaryKeys = ["id"])
+data class ExchangeRate(
     val bank: String, // LAFISE
     val bestBuyPrice: Boolean, // false
     val bestSellPrice: Boolean, // true

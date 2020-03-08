@@ -1,6 +1,9 @@
 package ni.jugnicaragua.coyoteapp.model.banks
 
-data class Data(
+import androidx.room.Entity
+
+@Entity(tableName = "Bank", primaryKeys = ["id"])
+data class Banks(
     val active: Boolean, // true
     val cookies: List<Any>,
     val createdOn: String, // 2019-11-23T14:39:04.635
