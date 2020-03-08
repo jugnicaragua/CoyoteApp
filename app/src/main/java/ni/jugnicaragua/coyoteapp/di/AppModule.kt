@@ -27,4 +27,4 @@ val appModule = module {
 //    }
 }
 
-val allAppModules = listOf(appModule, remoteDataSourceModule, coilModule, preferencesModule)
+val allAppModules = listOf(appModule, remoteDataSourceModule, coilModule, preferencesModule, databaseModule)
