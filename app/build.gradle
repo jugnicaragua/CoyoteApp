@@ -7,7 +7,6 @@ plugins {
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
-
     defaultConfig {
         applicationId "ni.jugnicaragua.coyoteapp"
         minSdkVersion 16
@@ -17,14 +16,13 @@ android {
         buildConfigField "String", "COYOTE_SERVICE", "\"http://45.58.34.229:8080\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     packagingOptions {
         exclude 'META-INF/main.kotlin_module'
         exclude 'META-INF/library_release.kotlin_module'
         exclude 'META-INF/atomicfu.kotlin_module'
     }
-    dataBinding {
-        enabled = true
+    buildFeatures{
+        dataBinding = true
     }
     androidExtensions {
         experimental = true
@@ -36,14 +34,26 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility Versions.javaVersion
-        targetCompatibility Versions.javaVersion
+        sourceCompatibility Versions.javaVersionConstant
+        targetCompatibility Versions.javaVersionConstant
     }
     kotlinOptions {
-        jvmTarget = Versions.javaVersion
+        jvmTarget = Versions.javaVersionConstant
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions.freeCompilerArgs += ["-Xuse-experimental=kotlin.Experimental"]
     }
 }
-
+configurations.all {
+    resolutionStrategy.eachDependency { org.gradle.api.artifacts.DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == "com.android.support") {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion "26.+"
+            }
+        }
+    }
+}
 dependencies {
     implementation(Kotlin.kotlin)
     implementation(AndroidX.androidXcore)
@@ -52,19 +62,20 @@ dependencies {
     implementation(Retrofit.retrofit)
     implementation(Retrofit.retrofitConverter)
     implementation(Retrofit.okHttp)
-    implementation(Navigation.navigationGradle)
+    implementation(Google.material)
     implementation(Navigation.runtime)
     implementation(Navigation.fragment)
     implementation(Navigation.ui)
     implementation(Room.runtime)
-    implementation(Room.compiler)
     implementation(Room.ktx)
+    implementation(Room.compiler)
     implementation(Coroutines.coroutine)
     implementation(Koin.core)
     implementation(Koin.android)
     implementation(Koin.scope)
     implementation(Koin.viewModel)
     implementation(Koin.extension)
+    kapt Databinding.databinding
     implementation(Coil.coil)
     implementation(Coil.gif)
     implementation(Coil.transformation)

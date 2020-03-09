@@ -5,44 +5,31 @@ object Versions {
     const val koin = "2.1.3"
     const val navigation = "2.2.1"
 
-    const val javaVersion = "1.8"
+    const val javaVersionConstant = "1.8"
 
     const val timber    = "4.7.1"
     const val constraintlayout = "1.1.3"
     const val core = "1.2.0"
-    const val appcompat = "1z.1.0"
-    const val swipeRefresh = "1.1.0-alpha03"
+    const val appcompat = "1.1.0"
     const val lifecycle = "2.2.0-beta01"
     const val databinding = "3.1.4"
 
     const val retrofit = "2.7.2"
     const val interceptor = "4.4.0"
 
-    const val googleMaterial = "1.0.0"
+    const val googleMaterial = "1.2.0-alpha05"
 
     const val androidTest = "1.1.1"
-    const val vault = "1.4.2"
     const val junit = "4.13"
     const val testrunner = "1.1.1"
     const val espresso = "3.2.0"
     const val androidRules = "1.1.0"
-    const val rootBeer = "0.0.7"
 
     const val coroutine = "1.3.4"
-    const val coroutineAdapter = "0.9.2"
-
     const val coil = "0.9.5"
     const val coilTransformation = "0.0.4"
 
     const val room = "2.2.4"
-
-    const val skeleton = "2.0.0"
-    const val materialDrawer = "7.0.0-rc08"
-    const val viewPager = "1.0.0-rc01"
-
-    const val typeface = "3.0.1.4.original-kotlin@aar"
-    const val iconicTypeface = "2.2.0.6-kotlin@aar"
-    const val fontAwesomeTypeface = "5.9.0.0-kotlin@aar"
 }
 
 object Room {
@@ -62,11 +49,7 @@ object AndroidX {
     val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     val annotations = "androidx.annotation:annotation:${Versions.androidRules}"
     val androidXcore ="androidx.core:core-ktx:${Versions.core}"
-    val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
     val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
-    val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager}"
 }
 
 object Databinding {
@@ -75,12 +58,6 @@ object Databinding {
 
 object Libs {
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
-    val vault = "com.bottlerocketstudios:vault:${Versions.vault}"
-    val rootBeer = "com.scottyab:rootbeer-lib:${Versions.rootBeer}"
-    val skeleton = "com.faltenreich:skeletonlayout:${Versions.skeleton}"
-    val typeface = "com.mikepenz:google-material-typeface:${Versions.typeface}"
-    val iconicTypeface = "com.mikepenz:material-design-iconic-typeface:${Versions.iconicTypeface}"
-    val fontawesomeTypeface = "com.mikepenz:fontawesome-typeface:${Versions.fontAwesomeTypeface}"
 }
 
 object Navigation{
@@ -109,7 +86,7 @@ object Coroutines {
     val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 }
 
-object GoogleLibs {
+object Google {
     val material = "com.google.android.material:material:${Versions.googleMaterial}"
 }
 

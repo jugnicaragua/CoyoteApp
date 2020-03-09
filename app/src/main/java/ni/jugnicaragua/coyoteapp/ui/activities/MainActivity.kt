@@ -1,7 +1,7 @@
 package ni.jugnicaragua.coyoteapp.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import ni.jugnicaragua.coyoteapp.R
 
 class MainActivity : AppCompatActivity() {
