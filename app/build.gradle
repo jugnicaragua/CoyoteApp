@@ -13,13 +13,20 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         buildConfigField "String", "COYOTE_SERVICE", "\"http://45.58.34.229:8080\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     packagingOptions {
-        exclude 'META-INF/main.kotlin_module'
-        exclude 'META-INF/library_release.kotlin_module'
-        exclude 'META-INF/atomicfu.kotlin_module'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
     }
     buildFeatures{
         dataBinding = true
@@ -68,14 +75,14 @@ dependencies {
     implementation(Navigation.ui)
     implementation(Room.runtime)
     implementation(Room.ktx)
-    implementation(Room.compiler)
+    kapt(Room.compiler)
     implementation(Coroutines.coroutine)
     implementation(Koin.core)
     implementation(Koin.android)
     implementation(Koin.scope)
     implementation(Koin.viewModel)
     implementation(Koin.extension)
-    kapt Databinding.databinding
+    kapt(Databinding.databinding)
     implementation(Coil.coil)
     implementation(Coil.gif)
     implementation(Coil.transformation)

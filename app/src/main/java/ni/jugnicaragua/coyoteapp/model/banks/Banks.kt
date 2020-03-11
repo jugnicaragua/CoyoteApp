@@ -2,7 +2,7 @@ package ni.jugnicaragua.coyoteapp.model.banks
 
 import androidx.room.Entity
 
-@Entity(tableName = "Banks", primaryKeys = ["id"], ignoredColumns = ["cookies", "updatedOn"])
+@Entity(tableName = "Bank", primaryKeys = ["id"], ignoredColumns = ["cookies", "updatedOn"])
 data class Banks(
     var active: Boolean = false, // true
     var cookies: List<Any> = emptyList(),
