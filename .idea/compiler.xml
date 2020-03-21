@@ -3,6 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
       <module name="app" target="1.8" />
+      <module name="CoyoteApp.app" target="1.8" />
+      <module name="CoyoteApp.buildSrc" target="1.8" />
+      <module name="CoyoteApp.neumorph" target="1.8" />
       <module name="CoyoteApp_buildSrc" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -9,12 +9,8 @@ import okhttp3.Response
 
 class HeaderInterceptor : Interceptor {
     companion object ApiConstants{
-        const val LOGIN = "/api/login/"
-        const val SIGN_UP = "/api/sign_up/"
-        const val PROFILE = "api/profile/"
-        const val COUNTRY = "api/country/"
-        const val PLANT_SPECIMEN = "api/plant_specimen"
-        const val PERMANENT_LOGIN = "/api/permanent_login/"
+        const val EXCHANGE_RATE = "/api/commercialBankExchangeRates"
+        const val EXCHANGE_RATE_DATE = "/api/commercialBankExchangeRates/date"
     }
 
     private fun setupCookies(){
@@ -32,27 +28,11 @@ class HeaderInterceptor : Interceptor {
         var request = chain.request()
         requestBuilder = request.newBuilder()
         when (request.url.encodedPath) {
-            LOGIN -> {
+            EXCHANGE_RATE -> {
                 requestBuilder
                     .addHeader("Content-Type", "application/json")
             }
-            SIGN_UP -> {
-                requestBuilder
-                    .addHeader("Content-Type", "application/json")
-            }
-            PROFILE -> {
-                requestBuilder
-                    .addHeader("Content-Type", "application/json")
-            }
-            PLANT_SPECIMEN -> {
-                requestBuilder
-                    .addHeader("Content-Type", "application/json")
-            }
-            COUNTRY -> {
-                requestBuilder
-                    .addHeader("Content-Type", "application/json")
-            }
-            PERMANENT_LOGIN -> {
+            EXCHANGE_RATE_DATE -> {
                 requestBuilder
                     .addHeader("Content-Type", "application/json")
             }

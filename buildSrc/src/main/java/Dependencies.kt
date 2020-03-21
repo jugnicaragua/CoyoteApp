@@ -1,11 +1,14 @@
 object Versions {
-    const val gradle = "4.1.0-alpha02"
+    const val gradle = "4.1.0-alpha03"
     const val kotlin = "1.3.70"
 
     const val koin = "2.1.3"
     const val navigation = "2.2.1"
 
     const val javaVersionConstant = "1.8"
+
+    const val skeleton = "1.1.2"
+    const val shimmer = "2.1.0"
 
     const val timber    = "4.7.1"
     const val constraintlayout = "1.1.3"
@@ -18,7 +21,7 @@ object Versions {
     const val interceptor = "4.4.0"
 
     const val googleMaterial = "1.2.0-alpha05"
-
+    const val backdrop = "1.0.0"
     const val androidTest = "1.1.1"
     const val junit = "4.13"
     const val testrunner = "1.1.1"
@@ -58,6 +61,9 @@ object Databinding {
 
 object Libs {
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    val backdrop = "com.yusufpats.backdroplayout:backdropLayout:${Versions.backdrop}"
+    val skeleton = "com.ethanhua:skeleton:${Versions.skeleton}"
+    val shimmer = "io.supercharge:shimmerlayout:${Versions.shimmer}"
 }
 
 object Navigation{

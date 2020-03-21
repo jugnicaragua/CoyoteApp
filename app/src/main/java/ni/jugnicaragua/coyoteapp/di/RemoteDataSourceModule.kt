@@ -1,4 +1,4 @@
-package ni.jugnicaragua.coyoteapp.data.network
+package ni.jugnicaragua.coyoteapp.di
 
 import ni.jugnicaragua.coyoteapp.BuildConfig
 import ni.jugnicaragua.coyoteapp.data.network.cookiesInterceptor.ReceivedCookieInterceptor
@@ -13,7 +13,12 @@ import java.util.concurrent.TimeUnit
 
 val remoteDataSourceModule = module {
     single { createOkHttpClient() }
-    single { createWebService<ComercialBanksInterface>(get(), BuildConfig.COYOTE_SERVICE) }
+    single {
+        createWebService<ComercialBanksInterface>(
+            get(),
+            BuildConfig.COYOTE_SERVICE
+        )
+    }
 }
 
 fun createOkHttpClient(): OkHttpClient {
@@ -24,11 +29,12 @@ fun getOkHttpClient(): OkHttpClient{
     return OkHttpClient
         .Builder()
         .addInterceptor(HeaderInterceptor())
+        //.addInterceptor(ResponseParser())
+        .addInterceptor(ReceivedCookieInterceptor())
         .apply {
             addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
-            interceptors().add(ReceivedCookieInterceptor())
         }
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)

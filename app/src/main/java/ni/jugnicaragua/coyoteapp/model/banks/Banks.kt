@@ -1,7 +1,9 @@
 package ni.jugnicaragua.coyoteapp.model.banks
 
+import androidx.annotation.Keep
 import androidx.room.Entity
 
+@Keep
 @Entity(tableName = "Bank", primaryKeys = ["id"], ignoredColumns = ["cookies", "updatedOn"])
 data class Banks(
     var active: Boolean = false, // true

@@ -2,7 +2,8 @@ package ni.jugnicaragua.coyoteapp.base
 
 import android.app.Application
 import ni.jugnicaragua.coyoteapp.BuildConfig
-import ni.jugnicaragua.coyoteapp.di.allAppModules
+import ni.jugnicaragua.coyoteapp.di.remoteDataSourceModule
+import ni.jugnicaragua.coyoteapp.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -11,6 +12,8 @@ import timber.log.Timber
 class BaseApplication : Application() {
     companion object{
         lateinit var context: BaseApplication
+        val allAppModules = listOf(repositoryModule, viewModelModule,
+            remoteDataSourceModule, coilModule, preferencesModule, databaseModule)
     }
 
     override fun onCreate() {

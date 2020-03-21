@@ -13,6 +13,9 @@ interface BanksDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBankModel(banksTable: Banks)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(banksTable: List<Banks>)
+
 //    @Query("DELETE FROM WeatherTable WHERE dateTime = :dateTime ")
 //    fun deleteWeatherModel(dateTime: Int)
 
@@ -23,5 +26,5 @@ interface BanksDao {
 //    fun loadAllWeathers(city: String): LiveData<List<WeatherEntity>>
 
     @Query("select * from Bank")
-    fun getAll(): LiveData<List<Banks>>
+    fun getAll(): List<Banks>
 }
