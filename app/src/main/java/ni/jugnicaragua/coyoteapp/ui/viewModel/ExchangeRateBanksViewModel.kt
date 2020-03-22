@@ -29,7 +29,7 @@ class ExchangeRateBanksViewModel (private val comercialBanksRepository: Comercia
                 exchangeRateDao.insertAll(nameMap.toList())
                 requestExchangeRateToday()
             }.onFailure {
-                println("fail: $it")
+                requestExchangeRateToday()
             }
         }
     }

@@ -33,7 +33,7 @@ class CentralBankViewModel (private val centralBankRepository: CentralBankReposi
                 centralBankDao.insertCentralBankModel(root)
                 requestCentralBankExchangeToday()
             }.onFailure {
-                println("fail: $it")
+                requestCentralBankExchangeToday()
             }
         }
     }
