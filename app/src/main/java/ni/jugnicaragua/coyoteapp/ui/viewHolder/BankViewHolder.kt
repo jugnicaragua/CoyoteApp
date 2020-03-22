@@ -15,7 +15,7 @@ class BankViewHolder constructor(override val containerView: View,val imageLoade
     fun bind(exchangeRate: ExchangeRate) {
         bankImage?.let {
             when(exchangeRate.bank){
-                "AVANZ" -> imageLoader.load(R.drawable.ic_error, it)
+                "AVANZ" -> imageLoader.load(R.drawable.ic_avanz, it)
                 "BAC" -> imageLoader.load(R.drawable.ic_bac, it)
                 "BANPRO" -> imageLoader.load(R.drawable.ic_banpro, it)
                 "FICOHSA" -> imageLoader.load(R.drawable.ic_ficohsa, it)

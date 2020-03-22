@@ -62,7 +62,7 @@ configurations.all {
     }
 }
 dependencies {
-    implementation project(':neumorph')
+    //implementation project(':neumorph')
     implementation(Kotlin.kotlin)
     implementation(AndroidX.androidXcore)
     implementation(AndroidX.appcompat)
