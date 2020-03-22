@@ -12,6 +12,7 @@ class HeaderInterceptor : Interceptor {
         const val EXCHANGE_RATE = "/api/commercialBankExchangeRates"
         const val EXCHANGE_RATE_DATE = "/api/commercialBankExchangeRates/date"
         const val EXCHANGE_RATE_DATE_TODAY = "/api/commercialBankExchangeRates/date/today"
+        const val CENTRAL_BANK_EXCHANGE_TODAY = "/api/centralBankExchangeRates/today"
     }
 
     private fun setupCookies(){
@@ -38,6 +39,10 @@ class HeaderInterceptor : Interceptor {
                     .addHeader("Content-Type", "application/json")
             }
             EXCHANGE_RATE_DATE_TODAY -> {
+                requestBuilder
+                    .addHeader("Content-Type", "application/json")
+            }
+            CENTRAL_BANK_EXCHANGE_TODAY -> {
                 requestBuilder
                     .addHeader("Content-Type", "application/json")
             }

@@ -14,4 +14,10 @@ class CoilImageLoader : ImageLoader {
             memoryCachePolicy(CachePolicy.ENABLED)
         }
     }
+
+    override fun load(imageSrc: Int, imageView: ImageView) {
+        imageView.load(imageSrc){
+            placeholder(R.drawable.ic_launcher_background)
+        }
+    }
 }

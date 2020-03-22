@@ -19,4 +19,8 @@ interface CentralBankDao {
 
     @Query("select * from CentralBank")
     fun getAll(): List<CentralBank>
+
+    @Query("select * from CentralBank where date = :currentDate")
+    fun getByDate(currentDate: String): CentralBank
+
 }

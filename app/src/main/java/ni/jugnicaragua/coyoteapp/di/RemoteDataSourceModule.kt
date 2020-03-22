@@ -3,6 +3,7 @@ package ni.jugnicaragua.coyoteapp.di
 import ni.jugnicaragua.coyoteapp.BuildConfig
 import ni.jugnicaragua.coyoteapp.data.network.cookiesInterceptor.ReceivedCookieInterceptor
 import ni.jugnicaragua.coyoteapp.data.network.headerInterceptor.HeaderInterceptor
+import ni.jugnicaragua.coyoteapp.data.network.interfaces.CentralBankInterface
 import ni.jugnicaragua.coyoteapp.data.network.interfaces.ComercialBanksInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,6 +17,9 @@ val remoteDataSourceModule = module {
     single {
         createWebService<ComercialBanksInterface>(get(), BuildConfig.COYOTE_SERVICE)
     }
+    single {
+        createWebService<CentralBankInterface>(get(), BuildConfig.COYOTE_SERVICE)
+    }
 }
 
 fun createOkHttpClient(): OkHttpClient {
@@ -26,7 +30,6 @@ fun getOkHttpClient(): OkHttpClient{
     return OkHttpClient
         .Builder()
         .addInterceptor(HeaderInterceptor())
-        //.addInterceptor(ResponseParser())
         .addInterceptor(ReceivedCookieInterceptor())
         .apply {
             addInterceptor(HttpLoggingInterceptor().apply {

@@ -27,7 +27,7 @@ class ExchangeRateBanksViewModel (private val comercialBanksRepository: Comercia
             }.onSuccess {root ->
                 val nameMap: MutableList<ExchangeRate> = root.data.map { it }.toMutableList()
                 exchangeRateDao.insertAll(nameMap.toList())
-                emitUiState(result = Event(root.data))
+                requestExchangeRateToday()
             }.onFailure {
                 println("fail: $it")
             }

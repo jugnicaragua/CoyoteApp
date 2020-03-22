@@ -8,7 +8,7 @@ object Versions {
     const val javaVersionConstant = "1.8"
 
     const val skeleton = "2.0.1"
-    const val shimmer = "2.1.0"
+    const val blur = "3.0.0"
 
     const val timber    = "4.7.1"
     const val constraintlayout = "1.1.3"
@@ -63,6 +63,7 @@ object Libs {
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     val backdrop = "com.yusufpats.backdroplayout:backdropLayout:${Versions.backdrop}"
     val skeleton = "com.faltenreich:skeletonlayout:${Versions.skeleton}"
+    val blur = "jp.wasabeef:blurry:${Versions.blur}"
 }
 
 object Navigation{

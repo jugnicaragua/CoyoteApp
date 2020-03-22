@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tool="http://schemas.android.com/tools">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/bankImage"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ni.jugnicaragua.neumorph.NeumorphCardView
+        android:id="@+id/bankCardImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:scaleType="fitXY"
-        android:background="@color/md_teal_700"
+        android:padding="@dimen/margin_2x"
+        android:background="@drawable/card_button"
+        app:neumorph_shadowColorLight="@color/md_white_1000"
+        app:neumorph_shadowColorDark="@color/md_teal_400"
+        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bankImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+    </ni.jugnicaragua.neumorph.NeumorphCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/purchase"
+            android:gravity="start"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/bankImage"
+            app:layout_constraintStart_toEndOf="@+id/bankCardImage"
             app:layout_constraintBottom_toTopOf="@+id/purchaseValue"
             android:layout_marginStart="@dimen/margin_6x"
             android:layout_marginLeft="@dimen/margin_6x"
@@ -27,10 +38,11 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/purchaseValue"
+            android:gravity="start"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/purchase"
-            app:layout_constraintStart_toEndOf="@+id/bankImage"
+            app:layout_constraintStart_toEndOf="@+id/bankCardImage"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="@dimen/margin_6x"
             android:layout_marginLeft="@dimen/margin_6x"
@@ -38,6 +50,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sell"
+            android:gravity="start"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,6 +61,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sellValue"
+            android:gravity="start"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/sell"

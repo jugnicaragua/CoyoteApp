@@ -10,10 +10,17 @@ import ni.jugnicaragua.coyoteapp.R
 import ni.jugnicaragua.coyoteapp.imageloader.ImageLoader
 import ni.jugnicaragua.coyoteapp.model.exchangeRate.ExchangeRate
 
-class BankViewHolder constructor(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+class BankViewHolder constructor(override val containerView: View,val imageLoader: ImageLoader) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
     fun bind(exchangeRate: ExchangeRate) {
-        //plantImage?.let { imageLoader.load("${BuildConfig.COYOTE_SERVICE}/gallery/${plant.image}", it) }
+        bankImage?.let {
+            when(exchangeRate.bank){
+                "AVANZ"-> imageLoader.load(R.drawable.ic_error, it)
+                "BAC"-> imageLoader.load(R.drawable.ic_bac, it)
+                "BANPRO"-> imageLoader.load(R.drawable.ic_banpro, it)
+                "FICOHSA"-> imageLoader.load(R.drawable.ic_ficohsa, it)
+            }
+        }
         sellValue.text = exchangeRate.sell.toString()
         purchaseValue.text = exchangeRate.buy.toString()
 
@@ -21,8 +28,8 @@ class BankViewHolder constructor(override val containerView: View) : RecyclerVie
     }
 
     companion object {
-        fun create(parent: ViewGroup): BankViewHolder {
-            return BankViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.banks_card, parent, false))
+        fun create(parent: ViewGroup, imageLoader: ImageLoader): BankViewHolder {
+            return BankViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.banks_card, parent, false), imageLoader)
         }
     }
 }

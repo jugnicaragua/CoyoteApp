@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <com.yusufpats.backdroplayout.BackdropLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -102,27 +103,22 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroup"
-                android:layout_width="@dimen/constraint_zero"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:singleSelection="true"
+                app:selectionRequired="true"
+                android:padding="@dimen/margin_default"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
-                <GridLayout
-                    android:id="@+id/containerDaySelector"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/margin_default"
-                    android:columnCount="3"
-                    android:orientation="horizontal">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipToday"
                         style="@style/AppTheme.ChoiceChips"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="0"
-                        android:checkable="true"
+                        android:layout_marginEnd="@dimen/margin_6x"
+                        android:layout_marginRight="@dimen/margin_6x"
                         android:checked="true"
                         android:text="@string/today"/>
 
@@ -131,10 +127,7 @@
                         style="@style/AppTheme.ChoiceChips"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|center_horizontal"
-                        android:layout_column="1"
                         android:gravity="center"
-                        android:checkable="true"
                         android:text="@string/week" />
 
                     <com.google.android.material.chip.Chip
@@ -142,15 +135,16 @@
                         style="@style/AppTheme.ChoiceChips"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:checkable="true"
+                        android:layout_marginStart="@dimen/margin_6x"
+                        android:layout_marginLeft="@dimen/margin_6x"
                         android:text="@string/month" />
-                </GridLayout>
             </com.google.android.material.chip.ChipGroup>
+            <!--Due to Backdrop needs 200dp to set the UI as the mockup, the recyclerview needs 200dp of BottomMargin too-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_exchanges_rates"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="150dp"
                 app:layout_constraintTop_toBottomOf="@+id/chipGroup"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/constraint_zero"
