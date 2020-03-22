@@ -6,7 +6,7 @@
 //import kotlinx.coroutines.Dispatchers
 //import kotlinx.coroutines.Job
 //import kotlinx.coroutines.launch
-//import ni.jugnicaragua.coyoteapp.model.Root
+//import ni.jugnicaragua.coyoteapp.model.banks.Root
 //import ni.jugnicaragua.coyoteapp.repository.ComercialBanksRepository
 //import ni.jugnicaragua.coyoteapp.util.UseCaseResult
 //import kotlin.coroutines.CoroutineContext

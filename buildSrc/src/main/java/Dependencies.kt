@@ -7,7 +7,7 @@ object Versions {
 
     const val javaVersionConstant = "1.8"
 
-    const val skeleton = "1.1.2"
+    const val skeleton = "2.0.1"
     const val shimmer = "2.1.0"
 
     const val timber    = "4.7.1"
@@ -62,8 +62,7 @@ object Databinding {
 object Libs {
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     val backdrop = "com.yusufpats.backdroplayout:backdropLayout:${Versions.backdrop}"
-    val skeleton = "com.ethanhua:skeleton:${Versions.skeleton}"
-    val shimmer = "io.supercharge:shimmerlayout:${Versions.shimmer}"
+    val skeleton = "com.faltenreich:skeletonlayout:${Versions.skeleton}"
 }
 
 object Navigation{

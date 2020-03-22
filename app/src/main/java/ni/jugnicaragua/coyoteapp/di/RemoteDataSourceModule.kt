@@ -14,10 +14,7 @@ import java.util.concurrent.TimeUnit
 val remoteDataSourceModule = module {
     single { createOkHttpClient() }
     single {
-        createWebService<ComercialBanksInterface>(
-            get(),
-            BuildConfig.COYOTE_SERVICE
-        )
+        createWebService<ComercialBanksInterface>(get(), BuildConfig.COYOTE_SERVICE)
     }
 }
 

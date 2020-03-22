@@ -12,8 +12,7 @@ import timber.log.Timber
 class BaseApplication : Application() {
     companion object{
         lateinit var context: BaseApplication
-        val allAppModules = listOf(repositoryModule, viewModelModule,
-            remoteDataSourceModule, coilModule, preferencesModule, databaseModule)
+        val allAppModules = listOf(coilModule, repositoryModule, viewModelModule, remoteDataSourceModule, preferencesModule, databaseModule)
     }
 
     override fun onCreate() {

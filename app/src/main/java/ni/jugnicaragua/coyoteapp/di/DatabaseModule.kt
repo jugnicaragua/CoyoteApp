@@ -22,16 +22,16 @@ val databaseModule = module {
         return database.banksDbTableDao()
     }
 
-//    fun provideExchangeRateDao(database: CoyoteDb): ExchangeRateDao {
-//        return database.exchangeRateDbTableDao()
-//    }
-//
-//    fun provideCentralBankDao(database: CoyoteDb): CentralBankDao {
-//        return database.centralBankDbTableDao()
-//    }
+    fun provideExchangeRateDao(database: CoyoteDb): ExchangeRateDao {
+        return database.exchangeRateDbTableDao()
+    }
+
+    fun provideCentralBankDao(database: CoyoteDb): CentralBankDao {
+        return database.centralBankDbTableDao()
+    }
 
     single { provideDatabase(androidApplication()) }
     single { provideBanksDao(get()) }
-//    single { provideExchangeRateDao(get()) }
-//    single { provideCentralBankDao(get()) }
+    single { provideExchangeRateDao(get()) }
+    single { provideCentralBankDao(get()) }
 }

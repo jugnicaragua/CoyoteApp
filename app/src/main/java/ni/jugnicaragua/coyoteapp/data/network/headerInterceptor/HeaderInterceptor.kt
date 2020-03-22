@@ -11,6 +11,7 @@ class HeaderInterceptor : Interceptor {
     companion object ApiConstants{
         const val EXCHANGE_RATE = "/api/commercialBankExchangeRates"
         const val EXCHANGE_RATE_DATE = "/api/commercialBankExchangeRates/date"
+        const val EXCHANGE_RATE_DATE_TODAY = "/api/commercialBankExchangeRates/date/today"
     }
 
     private fun setupCookies(){
@@ -33,6 +34,10 @@ class HeaderInterceptor : Interceptor {
                     .addHeader("Content-Type", "application/json")
             }
             EXCHANGE_RATE_DATE -> {
+                requestBuilder
+                    .addHeader("Content-Type", "application/json")
+            }
+            EXCHANGE_RATE_DATE_TODAY -> {
                 requestBuilder
                     .addHeader("Content-Type", "application/json")
             }

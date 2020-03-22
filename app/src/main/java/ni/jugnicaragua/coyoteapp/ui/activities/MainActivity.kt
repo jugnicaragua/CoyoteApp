@@ -3,27 +3,68 @@ package ni.jugnicaragua.coyoteapp.ui.activities
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.faltenreich.skeletonlayout.Skeleton
+import com.faltenreich.skeletonlayout.applySkeleton
 import kotlinx.android.synthetic.main.activity_main.*
 import ni.jugnicaragua.coyoteapp.R
-import ni.jugnicaragua.coyoteapp.data.local.database.dao.BanksDao
-import ni.jugnicaragua.coyoteapp.model.banks.Banks
-import ni.jugnicaragua.coyoteapp.ui.viewModel.CountryViewModel
+import ni.jugnicaragua.coyoteapp.imageloader.ImageLoader
+import ni.jugnicaragua.coyoteapp.ui.adapter.ExchangeRateAdapter
+import ni.jugnicaragua.coyoteapp.ui.viewModel.ExchangeRateBanksViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    private val homeViewModel: CountryViewModel by viewModel()
+
+    private lateinit var skeleton: Skeleton
+    //private val imageLoader: ImageLoader by inject()
+    private val exchangeRateBanksViewModel: ExchangeRateBanksViewModel by viewModel()
+    private val recyclerView: RecyclerView by lazy { rv_exchanges_rates }
+    private val exchangeRateAdapter: ExchangeRateAdapter by lazy { ExchangeRateAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            setHasFixedSize(true)
+            adapter = exchangeRateAdapter
+        }
+        setupSkeleton()
         initBackdrop()
-        homeViewModel.uiState.observe(this, Observer {
-            println(it)
+        exchangeRateBanksViewModel.uiState.observe(this, Observer {
+            val dataState = it ?: return@Observer
+            if (!dataState.showProgress) displayHideSkeleton(hide = true)
+            if (dataState.result != null && !dataState.result.consumed){
+                dataState.result.consume()?.let { result ->
+                    exchangeRateAdapter.submitList(result)
+                }
+            }
+            if (dataState.error != null && !dataState.error.consumed){
+                dataState.error.consume()?.let { error ->
+                    Toast.makeText(applicationContext, resources.getString(error), Toast.LENGTH_LONG).show()
+                }
+            }
         })
-        homeViewModel.requestCountry()
-        homeViewModel.demo()
+    }
+
+    private fun displayHideSkeleton(hide: Boolean = false){
+        if(hide) {
+            if (skeleton.isSkeleton()) skeleton.showOriginal()
+        } else skeleton.showSkeleton()
+    }
+
+    private fun setupSkeleton(){
+        skeleton = rv_exchanges_rates.applySkeleton(R.layout.banks_card, 6)
+        skeleton.apply {
+            showShimmer = true
+            shimmerDurationInMillis = 900
+            maskCornerRadius = 1f
+            maskColor = ContextCompat.getColor(this@MainActivity, R.color.colorPrimaryLight)
+        }
     }
 
     private fun initBackdrop() {

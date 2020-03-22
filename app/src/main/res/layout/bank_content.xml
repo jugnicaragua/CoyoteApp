@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bankImage"
         android:layout_width="100dp"
@@ -14,45 +15,45 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/a1"
+            android:id="@+id/purchase"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@+id/bankImage"
-            app:layout_constraintBottom_toTopOf="@+id/a2"
+            app:layout_constraintBottom_toTopOf="@+id/purchaseValue"
             android:layout_marginStart="@dimen/margin_6x"
             android:layout_marginLeft="@dimen/margin_6x"
-            android:text="DEDE"/>
+            android:text="@string/purchase"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/a2"
+            android:id="@+id/purchaseValue"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/a1"
+            app:layout_constraintTop_toBottomOf="@+id/purchase"
             app:layout_constraintStart_toEndOf="@+id/bankImage"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="@dimen/margin_6x"
             android:layout_marginLeft="@dimen/margin_6x"
-            android:text="DEDE"/>
+            android:text="@string/exchange_amount"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/a3"
+            android:id="@+id/sell"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/a4"
-            app:layout_constraintStart_toEndOf="@+id/a1"
+            app:layout_constraintBottom_toTopOf="@+id/sellValue"
+            app:layout_constraintStart_toEndOf="@+id/purchase"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="DEDE"/>
+            android:text="@string/sell"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/a4"
+            android:id="@+id/sellValue"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/a3"
+            app:layout_constraintTop_toBottomOf="@+id/sell"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/a2"
-            android:text="DEDE"/>
+            app:layout_constraintStart_toEndOf="@+id/purchaseValue"
+            android:text="@string/exchange_amount"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

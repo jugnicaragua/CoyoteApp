@@ -10,7 +10,6 @@
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="5dp"
-    android:layout_margin="5dp"
     app:cardElevation="5dp">
     <include layout="@layout/bank_content"/>
 </com.google.android.material.card.MaterialCardView>
