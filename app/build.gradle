@@ -34,10 +34,23 @@ android {
     androidExtensions {
         experimental = true
     }
+    signingConfigs {
+        config {
+            keyAlias 'LuisCB'
+            keyPassword 'LuisCardozaBird'
+            storeFile file('LuisCardozaBird.jks')
+            storePassword 'LuisCardozaBird'
+        }
+    }
     buildTypes {
         release {
-            minifyEnabled false
+            debuggable true
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            proguardFile '/root/AndroidStudioProjects/CoyoteApp/app/proguard-rules.pro'
         }
     }
     compileOptions {

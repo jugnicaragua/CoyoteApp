@@ -1,3 +1,2 @@
-include ':neumorph'
 include ':app'
 rootProject.name = "CoyoteApp"
