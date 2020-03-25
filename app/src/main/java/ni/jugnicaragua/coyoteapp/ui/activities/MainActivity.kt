@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val recyclerView: RecyclerView by lazy { rv_exchanges_rates }
     private val exchangeRateAdapter: ExchangeRateAdapter by lazy { ExchangeRateAdapter(imageLoader) }
     private val currentDate: Calendar by lazy { getCalendar() }
+    private var formatedDate: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +37,17 @@ class MainActivity : AppCompatActivity() {
         backdrop_layout.setOnTouchListener(object: SwipeGesture(this@MainActivity){
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
-                exchangeRateBanksViewModel.requestByDate(currentDate.addDay().toString("yyyy-MM-dd"))
-                centralBankViewModel.requestByDate(currentDate.addDay().toString("yyyy-MM-dd"))
+                formatedDate = currentDate.addDay().toString("yyyy-MM-dd")
+                txtExchangeTitle.text = String.format(getString(R.string.today_exchange_rate),formatedDate)
+                exchangeRateBanksViewModel.requestByDate(formatedDate)
+                centralBankViewModel.requestByDate(formatedDate)
             }
             override fun onSwipeRight() {
                 super.onSwipeRight()
-                exchangeRateBanksViewModel.requestByDate(currentDate.sustractDay().toString("yyyy-MM-dd"))
-                centralBankViewModel.requestByDate(currentDate.sustractDay().toString("yyyy-MM-dd"))
+                formatedDate = currentDate.sustractDay().toString("yyyy-MM-dd")
+                txtExchangeTitle.text = String.format(getString(R.string.today_exchange_rate),formatedDate)
+                exchangeRateBanksViewModel.requestByDate(formatedDate)
+                centralBankViewModel.requestByDate(formatedDate)
             }
         })
         recyclerView.apply {
