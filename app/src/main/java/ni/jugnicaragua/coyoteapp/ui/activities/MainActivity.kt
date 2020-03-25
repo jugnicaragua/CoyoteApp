@@ -34,18 +34,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        formatedDate = currentDate.sustractDay().toString("yyyy-MM-dd")
         backdrop_layout.setOnTouchListener(object: SwipeGesture(this@MainActivity){
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
                 formatedDate = currentDate.addDay().toString("yyyy-MM-dd")
-                txtExchangeTitle.text = String.format(getString(R.string.today_exchange_rate),formatedDate)
+                txtExchangeTitle.text = String.format(getString(R.string.today_exchange_rate),currentDate.time.toString("MM-dd-yyyy"))
                 exchangeRateBanksViewModel.requestByDate(formatedDate)
                 centralBankViewModel.requestByDate(formatedDate)
             }
             override fun onSwipeRight() {
                 super.onSwipeRight()
                 formatedDate = currentDate.sustractDay().toString("yyyy-MM-dd")
-                txtExchangeTitle.text = String.format(getString(R.string.today_exchange_rate),formatedDate)
+                txtExchangeTitle.text = String.format(getString(R.string.today_exchange_rate),currentDate.time.toString("MM-dd-yyyy"))
                 exchangeRateBanksViewModel.requestByDate(formatedDate)
                 centralBankViewModel.requestByDate(formatedDate)
             }
@@ -72,7 +73,6 @@ class MainActivity : AppCompatActivity() {
         })
         exchangeRateBanksViewModel.uiState.observe(this, Observer {
             val dataState = it ?: return@Observer
-            //displayHideSkeleton(hide = false)
             if (!dataState.showProgress)displayHideSkeleton(hide = true) else displayHideSkeleton(hide = false)
             if (dataState.result != null && !dataState.result.consumed){
                 dataState.result.consume()?.let { result ->
@@ -89,8 +89,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        exchangeRateBanksViewModel.requestByDate(currentDate.time.toString("yyyy-MM-dd"))
-        centralBankViewModel.requestByDate(currentDate.time.toString("yyyy-MM-dd"))
+        txtExchangeTitle.text = String.format(getString(R.string.today_exchange_rate),currentDate.time.toString("MM-dd-yyyy"))
+        exchangeRateBanksViewModel.requestByDate(formatedDate)
+        centralBankViewModel.requestByDate(formatedDate)
     }
 
     private fun displayHideSkeleton(hide: Boolean = false) = if(hide) skeleton.showOriginal() else skeleton.showSkeleton()
