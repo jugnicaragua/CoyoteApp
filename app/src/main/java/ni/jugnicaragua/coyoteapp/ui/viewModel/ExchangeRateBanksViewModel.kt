@@ -11,6 +11,7 @@ import ni.jugnicaragua.coyoteapp.model.Event
 import ni.jugnicaragua.coyoteapp.model.banks.Banks
 import ni.jugnicaragua.coyoteapp.model.exchangeRate.ExchangeRate
 import ni.jugnicaragua.coyoteapp.repository.ComercialBanksRepository
+import ni.jugnicaragua.coyoteapp.util.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
@@ -23,18 +24,36 @@ class ExchangeRateBanksViewModel (private val comercialBanksRepository: Comercia
     init {
         viewModelScope.launch {
             runCatching {
+                emitUiState(showProgress = true)
                 comercialBanksRepository.getExchangeRateByToday()
             }.onSuccess {root ->
                 val nameMap: MutableList<ExchangeRate> = root.data.map { it }.toMutableList()
                 exchangeRateDao.insertAll(nameMap.toList())
-                requestExchangeRateToday()
+                requestExchangeRateByDay(getCurrentDateTime().toString("yyy-MM-dd"))
             }.onFailure {
-                requestExchangeRateToday()
+                requestExchangeRateByDay(getCurrentDateTime().toString("yyy-MM-dd"))
             }
         }
     }
 
-    fun requestExchangeRateToday() = emitUiState(result = Event(exchangeRateDao.getAll()))
+    fun requestByDate(requestedDate: String){
+        viewModelScope.launch {
+            runCatching {
+                emitUiState(showProgress = true)
+                comercialBanksRepository.getExchangeRateByDate(requestedDate)
+            }.onSuccess {root ->
+                val nameMap: MutableList<ExchangeRate> = root.data.map { it }.toMutableList()
+                exchangeRateDao.insertAll(nameMap.toList())
+                requestExchangeRateByDay(requestedDate)
+            }.onFailure {
+                requestExchangeRateByDay(requestedDate)
+            }
+        }
+    }
+
+    fun requestExchangeRateByWeek() = emitUiState(result = Event(exchangeRateDao.getByWeek(getCalendar().getFirstDayWeek().toString("yyyy-MM-dd"), getCalendar().geLastDayWeek().toString("yyyy-MM-dd"))))
+
+    fun requestExchangeRateByDay(requestedDate: String) = emitUiState(result = Event(exchangeRateDao.getByToday(requestedDate)))
 
     private fun emitUiState(showProgress: Boolean = false, result: Event<List<ExchangeRate>>? = null, error: Event<Int>? = null){
         val dataState = CredentialsDataState(showProgress, result, error)

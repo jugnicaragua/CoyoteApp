@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.yusufpats.backdroplayout.BackdropLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yusufpats.backdroplayout.BackdropLayout
+    android:id="@+id/backdrop_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/backdrop_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryLight"
@@ -101,51 +102,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/rounded_divider"
                 app:layout_constraintEnd_toEndOf="parent"/>
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:singleSelection="true"
-                app:selectionRequired="true"
-                android:padding="@dimen/margin_default"
-                app:layout_constraintTop_toBottomOf="@+id/divider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipToday"
-                        style="@style/AppTheme.ChoiceChips"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_6x"
-                        android:layout_marginRight="@dimen/margin_6x"
-                        android:checked="true"
-                        android:text="@string/today"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipWeek"
-                        style="@style/AppTheme.ChoiceChips"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/week" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipMonth"
-                        style="@style/AppTheme.ChoiceChips"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_6x"
-                        android:layout_marginLeft="@dimen/margin_6x"
-                        android:text="@string/month" />
-            </com.google.android.material.chip.ChipGroup>
             <!--Due to Backdrop needs 200dp to set the UI as the mockup, the recyclerview needs 200dp of BottomMargin too-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_exchanges_rates"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="150dp"
-                app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+                android:layout_marginTop="@dimen/margin_default"
+                android:layout_marginBottom="142dp"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/constraint_zero"
                 android:layout_height="@dimen/constraint_zero"

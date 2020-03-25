@@ -17,6 +17,9 @@ interface ExchangeRateDao {
     @Query("DELETE FROM ExchangeRate")
     fun removeAll()
 
-    @Query("select * from ExchangeRate")
-    fun getAll(): List<ExchangeRate>
+    @Query("select * from ExchangeRate where date = :currentDate")
+    fun getByToday(currentDate: String): List<ExchangeRate>
+
+    @Query("select * from ExchangeRate where date between :startDate and :endDate")
+    fun getByWeek(startDate: String, endDate: String): List<ExchangeRate>
 }

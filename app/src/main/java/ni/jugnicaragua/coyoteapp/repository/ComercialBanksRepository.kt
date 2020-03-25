@@ -8,8 +8,8 @@ import ni.jugnicaragua.coyoteapp.model.exchangeRate.RootExchangeRate
 interface ComercialBanksRepository {
     suspend fun getExchangeRates(): RootBank
     suspend fun getExchangeRateByBank(bankId: Int): ExchangeRate
-    suspend fun getExchangeRateByDate(date: String): RootBank
-    suspend fun getExchangeRateByDateRange(dateMap: HashMap<String, Any>): RootBank
+    suspend fun getExchangeRateByDate(date: String): RootExchangeRate
+    suspend fun getExchangeRateByDateRange(dateMap: HashMap<String, Any>): RootExchangeRate
     suspend fun getExchangeRateByToday(): RootExchangeRate
 }
 
@@ -22,11 +22,11 @@ class ComercialBanksRepositoryImplement(private val comercialBanksService: Comer
         return comercialBanksService.requestExchangeRateByBankId(bankId)
     }
 
-    override suspend fun getExchangeRateByDate(date: String): RootBank {
+    override suspend fun getExchangeRateByDate(date: String): RootExchangeRate {
         return comercialBanksService.requestExchangeRateByDate(date)
     }
 
-    override suspend fun getExchangeRateByDateRange(dateMap: HashMap<String, Any>): RootBank {
+    override suspend fun getExchangeRateByDateRange(dateMap: HashMap<String, Any>): RootExchangeRate {
         return comercialBanksService.requestExchangeRateByDateRange(dateMap)
     }
 

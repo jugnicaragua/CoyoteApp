@@ -1,8 +1,5 @@
 package ni.jugnicaragua.coyoteapp.ui.activities
 
-import android.content.Intent
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -18,8 +15,10 @@ import ni.jugnicaragua.coyoteapp.imageloader.ImageLoader
 import ni.jugnicaragua.coyoteapp.ui.adapter.ExchangeRateAdapter
 import ni.jugnicaragua.coyoteapp.ui.viewModel.CentralBankViewModel
 import ni.jugnicaragua.coyoteapp.ui.viewModel.ExchangeRateBanksViewModel
+import ni.jugnicaragua.coyoteapp.util.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,10 +28,23 @@ class MainActivity : AppCompatActivity() {
     private val centralBankViewModel: CentralBankViewModel by viewModel()
     private val recyclerView: RecyclerView by lazy { rv_exchanges_rates }
     private val exchangeRateAdapter: ExchangeRateAdapter by lazy { ExchangeRateAdapter(imageLoader) }
+    private val currentDate: Calendar by lazy { getCalendar() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        backdrop_layout.setOnTouchListener(object: SwipeGesture(this@MainActivity){
+            override fun onSwipeLeft() {
+                super.onSwipeLeft()
+                exchangeRateBanksViewModel.requestByDate(currentDate.addDay().toString("yyyy-MM-dd"))
+                centralBankViewModel.requestByDate(currentDate.addDay().toString("yyyy-MM-dd"))
+            }
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                exchangeRateBanksViewModel.requestByDate(currentDate.sustractDay().toString("yyyy-MM-dd"))
+                centralBankViewModel.requestByDate(currentDate.sustractDay().toString("yyyy-MM-dd"))
+            }
+        })
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
@@ -55,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         })
         exchangeRateBanksViewModel.uiState.observe(this, Observer {
             val dataState = it ?: return@Observer
+            //displayHideSkeleton(hide = false)
             if (!dataState.showProgress)displayHideSkeleton(hide = true) else displayHideSkeleton(hide = false)
             if (dataState.result != null && !dataState.result.consumed){
                 dataState.result.consume()?.let { result ->
@@ -71,26 +84,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        exchangeRateBanksViewModel.requestExchangeRateToday()
-        centralBankViewModel.requestCentralBankExchangeToday()
+        exchangeRateBanksViewModel.requestByDate(currentDate.time.toString("yyyy-MM-dd"))
+        centralBankViewModel.requestByDate(currentDate.time.toString("yyyy-MM-dd"))
     }
 
-    override fun onActivityReenter(resultCode: Int, data: Intent?) {
-        println("REENTER")
-    }
-
-    private fun displayHideSkeleton(hide: Boolean = false){
-        if(hide) {
-            if (skeleton.isSkeleton()) skeleton.showOriginal()
-        } else skeleton.showSkeleton()
-    }
+    private fun displayHideSkeleton(hide: Boolean = false) = if(hide) skeleton.showOriginal() else skeleton.showSkeleton()
 
     private fun setupSkeleton(){
         skeleton = rv_exchanges_rates.applySkeleton(R.layout.banks_card, 6)
         skeleton.apply {
             showShimmer = true
             shimmerDurationInMillis = 900
-            maskCornerRadius = 1f
+            maskCornerRadius = 10f
             maskColor = ContextCompat.getColor(this@MainActivity, R.color.colorPrimaryLight)
         }
     }

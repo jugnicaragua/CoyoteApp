@@ -31,14 +31,27 @@ class CentralBankViewModel (private val centralBankRepository: CentralBankReposi
                 centralBankRepository.getCentralBankExchangeToday()
             }.onSuccess {root ->
                 centralBankDao.insertCentralBankModel(root)
-                requestCentralBankExchangeToday()
+                requestCentralBankExchangeToday(getCurrentDateTime().toString("yyy-MM-dd"))
             }.onFailure {
-                requestCentralBankExchangeToday()
+                requestCentralBankExchangeToday(getCurrentDateTime().toString("yyy-MM-dd"))
             }
         }
     }
 
-    fun requestCentralBankExchangeToday() = emitUiState(result = Event(centralBankDao.getByDate(getCurrentDateTime().toString("yyyy-MM-dd"))))
+    fun requestByDate(requestedDate: String){
+        viewModelScope.launch {
+            runCatching {
+                centralBankRepository.getCentralBankExchangeByDate(requestedDate)
+            }.onSuccess {root ->
+                centralBankDao.insertCentralBankModel(root)
+                requestCentralBankExchangeToday(requestedDate)
+            }.onFailure {
+                requestCentralBankExchangeToday(requestedDate)
+            }
+        }
+    }
+
+    fun requestCentralBankExchangeToday(requestedDate: String) = emitUiState(result = Event(centralBankDao.getByDate(requestedDate)))
 
     private fun emitUiState(showProgress: Boolean = false, result: Event<CentralBank>? = null, error: Event<Int>? = null){
         val dataState = CredentialsDataState(showProgress, result, error)
