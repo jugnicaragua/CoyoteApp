@@ -102,13 +102,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:srcCompat="@drawable/rounded_divider"
                 app:layout_constraintEnd_toEndOf="parent"/>
-            <!--Due to Backdrop needs 200dp to set the UI as the mockup, the recyclerview needs 200dp of BottomMargin too-->
+            <!--Due to Backdrop needs 150dp to set the UI as the mockup, the recyclerview needs 200dp of BottomMargin too-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_exchanges_rates"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="@dimen/margin_default"
-                android:layout_marginBottom="142dp"
+                android:layout_marginBottom="150dp"
                 app:layout_constraintTop_toBottomOf="@+id/divider"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="@dimen/constraint_zero"
