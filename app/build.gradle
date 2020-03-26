@@ -36,10 +36,10 @@ android {
     }
     signingConfigs {
         config {
-            keyAlias 'LuisCB'
-            keyPassword 'LuisCardozaBird'
+            keyAlias 'DEVotion'
+            keyPassword 'Lacb2208:v'
             storeFile file('LuisCardozaBird.jks')
-            storePassword 'LuisCardozaBird'
+            storePassword 'Lacb2208:v'
         }
     }
     buildTypes {
@@ -75,7 +75,6 @@ configurations.all {
     }
 }
 dependencies {
-    //implementation project(':neumorph')
     implementation(Kotlin.kotlin)
     implementation(AndroidX.androidXcore)
     implementation(AndroidX.appcompat)

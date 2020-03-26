@@ -20,6 +20,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var skeleton: Skeleton
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //this.transparentStatusBar()
+        this.transparentStatusBar(R.color.colorPrimaryLight)
         formatedDate = currentDate.sustractDay().toString("yyyy-MM-dd")
         backdrop_layout.setOnTouchListener(object: SwipeGesture(this@MainActivity){
             override fun onSwipeLeft() {
